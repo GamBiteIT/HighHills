@@ -16,21 +16,30 @@
         </button>
       </div>
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <a wire:navigate href="{{route('home')}}">
         <div class="flex flex-shrink-0 items-center">
           <svg class="h-8 w-auto" fill="#000000" width="249px" height="249px" viewBox="-3.2 -3.2 38.40 38.40" id="icon" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, -1, 0, 0)rotate(0)" stroke="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"><path transform="translate(-3.2, -3.2), scale(2.4)" fill="#ffffff" d="M9.166.33a2.25 2.25 0 00-2.332 0l-5.25 3.182A2.25 2.25 0 00.5 5.436v5.128a2.25 2.25 0 001.084 1.924l5.25 3.182a2.25 2.25 0 002.332 0l5.25-3.182a2.25 2.25 0 001.084-1.924V5.436a2.25 2.25 0 00-1.084-1.924L9.166.33z" strokewidth="0"></path></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="6.4"><defs><style>.cls-1{fill:none;}</style></defs><title>letter--Hh</title><polygon points="13 9 13 15 9 15 9 9 7 9 7 23 9 23 9 17 13 17 13 23 15 23 15 9 13 9"></polygon><path d="M23,13H19V9H17V23h2V15h4v8h2V15A2,2,0,0,0,23,13Z"></path><rect id="_Transparent_Rectangle_" data-name="<Transparent Rectangle>" class="cls-1" width="32" height="32"></rect></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;}</style></defs><title>letter--Hh</title><polygon points="13 9 13 15 9 15 9 9 7 9 7 23 9 23 9 17 13 17 13 23 15 23 15 9 13 9"></polygon><path d="M23,13H19V9H17V23h2V15h4v8h2V15A2,2,0,0,0,23,13Z"></path><rect id="_Transparent_Rectangle_" data-name="<Transparent Rectangle>" class="cls-1" width="32" height="32"></rect></g></svg>
         </div>
+        </a>
         <div class="hidden sm:ml-auto sm:block">
           <div class="flex space-x-4">
             <!-- Modified links: Contact Us and About Us -->
-            <a wire:navigate href="{{route('services')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">{{__('Services')}}</a>
-            <a wire:navigate href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact Us</a>
-            <a wire:navigate href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About Us</a>     
+            <a wire:navigate href="{{route('home')}}" class=" {{ $currentRoute == 'home' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">{{__('Home')}}</a>
+            <a wire:navigate href="{{route('services')}}" class="{{ $currentRoute == 'services' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">{{__('Services')}}</a>
+            <a wire:navigate href="{{route('about')}}" class="{{ $currentRoute == 'about' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">{{__('About us')}}</a>
+            <a wire:navigate href="{{route('contact')}}" class=" {{ $currentRoute == 'contact' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">{{__('Contact Us')}}</a>
+            
+   
 
             <x-dropdown align="right" width="10">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2   text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{app()->getLocale()}}</div>
-
+                            
+                            @if(app()->getLocale()==="en")
+                            <div>English 🇺🇸</div>
+                            @else
+                            <div>  🇸🇦 العربية  </div>
+                            @endif
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -40,12 +49,15 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        @foreach (config('localization.locales') as $locale)
-                        <x-dropdown-link wire:navigate :href="route('localization',$locale)">
-                            {{ __($locale) }}
+                       
+                        <x-dropdown-link wire:navigate :href="route('localization','en')">
+                        English 🇺🇸
+                        </x-dropdown-link>
+                        <x-dropdown-link wire:navigate :href="route('localization','ar')">
+                        🇸🇦 العربية 
                         </x-dropdown-link>
 
-                        @endforeach
+              
 
                     </x-slot>
                 </x-dropdown>
@@ -62,9 +74,11 @@
   <div x-show="mobileMenuOpen" class="sm:hidden" id="mobile-menu">
     <div class="space-y-1 px-2 pb-3 pt-2">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-      <a wire:navigate href="{{route('services')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{{__('Services')}}</a>
-      <a wire:navigate href="#team" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Contact US</a>
-      <a wire:navigate href="#team" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">About US</a>
+      <a wire:navigate href="{{route('home')}}" class="{{ $currentRoute == 'home' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"> {{__('Home')}}</a>
+      <a wire:navigate href="{{route('services')}}"  class="{{ $currentRoute == 'services' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"> {{__('Services')}}</a>
+      <a wire:navigate href="{{route('about')}}"  class="{{ $currentRoute == 'about' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"> {{__('About us')}}</a>
+      <a wire:navigate href="{{route('contact')}}"  class="{{ $currentRoute == 'contact' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"> {{__('Contact Us')}}</a>
+
       <div class="flex space-x-2">
       <a href="#" class="text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium"><i class="fab fa-instagram"></i></a>
       <a href="#" class="text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium"><i class="fab fa-facebook"></i></a>
@@ -74,7 +88,11 @@
       <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{app()->getLocale()}}</div>
+                        @if(app()->getLocale()==="en")
+                            <div>English 🇺🇸</div>
+                            @else
+                            <div>  🇸🇦 العربية  </div>
+                            @endif
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -85,12 +103,16 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        @foreach (config('localization.locales') as $locale)
-                        <x-dropdown-link wire:navigate :href="route('localization',$locale)">
-                            {{ __($locale) }}
+                    
+                        <x-dropdown-link wire:navigate :href="route('localization','en')">
+                        English 🇺🇸
                         </x-dropdown-link>
 
-                        @endforeach
+                        <x-dropdown-link wire:navigate :href="route('localization','ar')">
+                        🇸🇦 العربية 
+                        </x-dropdown-link>
+
+                      
 
                     </x-slot>
                 </x-dropdown>
