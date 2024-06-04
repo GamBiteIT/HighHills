@@ -80,11 +80,7 @@
       <a wire:navigate href="{{route('contact')}}"  class="{{ $currentRoute == 'contact' ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"> {{__('Contact Us')}}</a>
 
       <div class="flex space-x-2">
-      <a href="#" class="text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium"><i class="fab fa-facebook"></i></a>
-      <a href="#" class="text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium"><i class="fab fa-tiktok"></i></a>
-      <a href="#" class="text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium"><i class="fab fa-twitter"></i></a>
-      <a href="#" class="text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium"><i class="fab fa-youtube"></i></a>
+     
       <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
